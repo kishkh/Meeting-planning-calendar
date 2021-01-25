@@ -1,0 +1,11 @@
+{
+  "name": "ciklum-test-task",
+  "version": "1.0.0",
+  "description": "Test task: Create a meeting room Create a simple meeting planning calendar for a meeting room in your office",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Olefir <kishkh2@gmail.com>",
+  "license": "ISC"
+}
