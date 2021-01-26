@@ -4,8 +4,29 @@
   "description": "Test task: Create a meeting room Create a simple meeting planning calendar for a meeting room in your office",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production"
   },
+  "browserslist": "> 0.25%, not dead",
   "author": "Andrew Olefir <kishkh2@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.1",
+    "mini-css-extract-plugin": "^1.3.4",
+    "node-sass": "^5.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "sass-loader": "^10.1.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  }
 }
