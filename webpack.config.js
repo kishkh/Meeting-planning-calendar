@@ -52,11 +52,13 @@ module.exports = {
         calendar: ['@babel/polyfill', './src/scripts/calendar.js'],
         form: ['@babel/polyfill', './src/scripts/form.js']
     },
+    
     output: {
         filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: optimization(),
+    devtool: "source-map",
     plugins: [
         calendar,
         form,

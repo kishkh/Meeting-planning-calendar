@@ -7,11 +7,25 @@
     <title>Calendar</title>
 </head>
 <body>
-    <h1>Calendar</h1>
-    <form action="./form.html">
-        <input type="submit" value="toForm">
-    </form>
-    <div class="container">Test add CSS</div>
-    
+    <div class="wrapper">
+        <div class="header">
+            <div class="title">
+                <span>Calendar</span>
+            </div>
+            <div class="header_btns">
+                <button id="btn-add" type="button">Add new event+</button>
+                <select id="sel-user">
+                    <option selected value="all">All members</option>
+                    <option value="Чебурашка">Alex</option>
+                    <option value="Крокодил Гена">Bob</option>
+                    <option value="Шапокляк">Ann</option>
+                    <option value="Крыса Лариса">Summer</option>
+                   </select>
+            </div>
+        </div>
+        <div class="content">
+            <div class="table"></div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,70 @@
+@import 'null.scss';
+
+$lightGray: #343d43;
+$gray: #323538;
+$darkGray: #1D2225;
+$indigo:  #4B0082;
+$agua: #7FFFD4;
+$coral: #FF7F50;
+$lime: #32CD32;
+$crimson: #DC143C;
+$poleGreen: #98FB98;
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    background-color: $lightGray;
+    margin: 0 auto;
+}
+.header{
+    display: flex;
+    align-items:flex-end;
+    justify-content: space-around;
+    height: 100px;
+    background-color: $darkGray;
+    color: $coral;
+}
+.header_btns{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+
+}
+.content{
+    
+    padding: 20px;
+    min-height: 500px;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    background-color:$darkGray;
+    color: $lime;
+
+}
+
+.row{
+
+    justify-content: center;
+    display: flex;
+}
+.headline{
+    font-weight: 700;
+}
+.container{
+    width: 200px;
+    border-radius: 5px;
+    height: 100px;
+    margin: 3px;
+    display: flex;
+    overflow:hidden;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray;
+    box-shadow: 0 3px 8px 1px rgb(20, 20, 20);
+    
+    label{
+        font-size: 20px;
+        
+    }
+        
+}
