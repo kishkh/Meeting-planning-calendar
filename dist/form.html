@@ -5,17 +5,77 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     
     <title>Form</title>
-<link rel="icon" href="favicon.ico"><link href="form.86342b04db1a1e6e253b.css" rel="stylesheet"></head>
+<link rel="icon" href="favicon.ico"><link href="form.2323212fde237c5de4ea.css" rel="stylesheet"></head>
 <body>
-    <h1>Form</h1>
-    <hr>
-    <div class="card">
-        <h2>SCSS</h2>
+    <div class="wrapper unselectable">
+        <form action="#" id="form" class="form">
+            <div class="err-place hideOpacity">
+                <div class="err-cover">
+                    <div class="err-sing">
+                        <span class="err-sing">&#10006</span>
+                    </div>
+                    <span id="err-text"></span>
+                </div>        
+                <span class="err-close">&#10006</span>
+            </div>
+            <div class="row">
+                <span>Name of the event: </span>
+                <input class="inp" id="inp-eve" type="text" autocomplete="off">
+            </div>
+            <div class="row">
+                <span>Participants: </span>
+                <div class="selectCheckboxWrapper inp">
+                    <div id="par-sel" class="selectPlace">
+                    <span id="text-team">Add people</span>
+                    
+                        <div class="hide" id="checkboxes">
+                            <label class="lab-che" for="Alex">
+                            <input class="che-usr" value="Alex" type="checkbox" id="Alex">Alex</label>
+                            <label class="lab-che" for="Ann">
+                            <input class="che-usr" value="Ann" type="checkbox" id="Ann">Ann</label>
+                            <label class="lab-che" for="Bob">
+                            <input class="che-usr" value="Bob" type="checkbox" id="Bob">Bob</label>
+                            <label class="lab-che" for="Summer">
+                            <input class="che-usr" value="Summer" type="checkbox" id="Summer">Summer</label>
+                        </div>
+                    </div>
+                </div>                
+            </div>           
+            <div class="row">
+                <span>Day: </span>
+                <select class="inp" name="sel-day" id="sel-day">
+                    <option value="mon">Monday</option>
+                    <option value="tue">Tuesday</option>
+                    <option value="wed">Wednesday</option>
+                    <option value="thu">Thursday</option>
+                    <option value="fri">Friday</option>    
+                </select>
+            </div>
+            <div class="row">
+                <span>Time: </span>
+                <select class="inp" name="sel-time" id="sel-tim">
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                </select>
+            </div>
+            <div class="btns">
+                <div class="raw last">
+                    <button type="button" id="back" class="btn">&#10006</button>
+                    <button type="button" id="submit" class="btn">+</button>
+                    <!-- <input id="back" class="btn" type="button" value="back"> -->
+                    <!-- <input type="button" class="btn" value="Submit" id="submit"> -->
+                </div>
+            </div>
+        </form>
     </div>
-    <p>Hello</p>
-    <form action="./calendar.html">
-        <input type="submit" value="toCalendar">
-    </form>
     
-<script src="vendors-node_modules_babel_polyfill_lib_index_js.86342b04db1a1e6e253b.js"></script><script src="form.86342b04db1a1e6e253b.js"></script></body>
+    
+<script src="vendors-node_modules_babel_polyfill_lib_index_js.2323212fde237c5de4ea.js"></script><script src="form.2323212fde237c5de4ea.js"></script></body>
 </html>
