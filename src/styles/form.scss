@@ -1,14 +1,189 @@
 @import 'null.scss';
-$border: 5px solid #ccc;
+@import 'colors.scss';
+@import 'unselectable.scss';
 
-.card {
-    padding: 1rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-    border: $border;
+body{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20px; 
+    background-color: $darkGray;   
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items:center;    
+}
+.form{
+    margin: 60px 0;
+    height: 500px;
+    width: 700px;
+    border-radius:5px;
+    background-color:$gray;
 }
 
-h2{
-    text-align: center;
-    color: darkgreen;
+.err-place{
+    cursor: default;
+    display: flex;
+    padding: 0 10px;
+    justify-content:space-between;
+    align-items: center;
+    height: 50px;
+    border-radius: 5px 5px 0 0;
+    color: $crimson;
+    width: 100%;
+    background-color: rgba(249, 252, 201, 0.8);
+    font-size: 20px;    
+}
+.err-cover{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &.err-sing{
+        display: flex;
+        height: 30px;
+        width: 30px;
+        background-color: $crimson;
+        border-radius: 50%;
+        
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        } 
+    }
+    #err-text{
+        padding: 0 0 0 5px;
+        
+    } 
+}
+.err-close{
+    color:$crimson;
+    display: flex;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.row{
+    display: flex;
+    margin: 20px 30px;
+    justify-content: start;
+    align-items:center;
+    span{
+        width: 210px;
+        padding: 0 20px;
+        color: $coral;  
+        cursor: default;  
+    }
+}
+.inp{
+    height: 40px;
+    width: 205px;
+    margin: 0 0 0 100px;
+    border-radius: 5px;
+    color: $coral;
+    border: 3px solid $gray;
+    font-size: 18px;
+    background-color: $darkGray;
+}
+#inp-eve{
+    padding-left: 5px;
+}
+.lab-che{
+    background-color: $darkGray;
+}
+
+.btns{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 160px;  
+    margin-right: 10px;  
+}
+.last{
+    display:flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+.btn{
+    height: 50px;
+    margin: 0 15px 0 0;
+    width: 50px;
+    border-style: outset;
+    border-radius: 50%;
+    
+    background-color: $gray;
+    box-shadow: 0 2px 8px 1px rgb(20, 20, 20);
+    &#submit{
+        color: $poleGreen;
+        font-size: 45px;   
+    }
+    &#back{
+        color: $coral;
+        font-size: 28px;
+    }       
+    &:active{
+        box-shadow: inset 0px 0px 2px rgb(20, 20, 20);
+        background-color: $gray;
+        
+    }
+}
+
+.selectCheckboxWrapper {
+    position: relative;
+    display: flex;
+    label {
+        width: 150px;
+        font-weight: bold;
+        }
+}
+.selectPlace {   
+    width: 205px;
+    padding: 8px 0 0 0;    
+}
+.che-usr{
+    margin: 3px 5px 3px 5px;
+    align-items: center;
+}
+#text-team{
+    cursor: default;
+    color: $coral;
+    padding: 0 3px;
+    font-size: 18px;
+    background-color: $darkGray;    
+}
+#checkboxes {
+    width: 100%;
+    margin-top: 5px;
+    label {
+        display: flex;
+        width: 100%;
+        border: 5px solid $darkGray;
+        height: 30px;
+        align-items: center;
+        &:hover {
+            background-color: $coral;
+            color: $darkGray;
+            }
+        }
+}
+
+option{
+    background-color: $darkGray;
+    border: none;
+    width: 100%;
+    margin: 2px;
+}
+
+.show{
+    display: block;
+}
+.showOpacity{
+    opacity: 1;
+}
+.hideOpacity{
+    opacity: 0;
+}
+.hide{
+    display: none;
 }

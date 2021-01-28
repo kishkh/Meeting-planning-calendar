@@ -15,19 +15,19 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
                 newCont.setAttribute('id', `${arrTimeName[row]}`);
                 newCont.classList.add('headline', 'container', 'full');
             
-                let newLab = document.createElement('label');
-                newLab.setAttribute('for', `${arrDayName[cont]}`);
-                newLab.textContent = `${arrDayName[cont]}`;
-                newCont.appendChild(newLab);
+                let newSpan = document.createElement('span');
+                newSpan.classList.add('span-head');
+                newSpan.textContent = `${arrDayName[cont]}`;
+                newCont.appendChild(newSpan);
             
             } else if (cont === 0) {
                 newCont.setAttribute('id', `${arrTimeName[row].toLowerCase()}`);
                 newCont.classList.add('headline', 'container', 'full');
             
-                let newLab = document.createElement('label');
-                newLab.setAttribute('for', `${arrTimeName[row].toLowerCase()}`);
-                newLab.textContent = `${arrTimeName[row]}`;
-                newCont.appendChild(newLab);
+                let newSpan = document.createElement('span');
+                newSpan.classList.add('span-head');
+                newSpan.textContent = `${arrTimeName[row]}`;
+                newCont.appendChild(newSpan);
             
             } else {
                 newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
