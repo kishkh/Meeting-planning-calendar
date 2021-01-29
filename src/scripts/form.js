@@ -47,11 +47,11 @@ form.addEventListener('click',(e) => {
         e.preventDefault();
         
         let dataJson = JSON.stringify({
-            'id-name': `${day.value}${time.value}`,
-            'inp-eve': nameEvent.value,
-            'che-usr': [...users],
-            'sel-day': day.value,
-            'sel-tim': time.value
+            'idName': `${day.value}${time.value}`,
+            'inpEve': nameEvent.value,
+            'cheUsr': [...users],
+            'selDay': day.value,
+            'selTim': time.value
         });     
                 
         try {

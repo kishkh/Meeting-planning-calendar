@@ -7,25 +7,48 @@
     <title>Calendar</title>
 </head>
 <body>
-    <div class="wrapper">
+    
+    <div class="wrapper unselectable">
+        <div class="modal_bg hide">
+            <div class="modal_container">    
+                <span class="modal_text">Do you really want to delete these meeting? This process cannot be undone.</span>
+                <div class="btns">
+                    <button class="btn_yes">Yes</button>
+                    <button class="btn_no">No</button>
+                </div>
+            </div>                
+        </div>
         <div class="header">
-            <div class="title">
-                <span>Calendar</span>
+            <div class="head_wrapper">
+                <div class="title">
+                    <span>Calendar</span>
+                </div>
+                <div class="header_btns">
+                    <button id="btn-add" type="button">New event+</button>
+                    <div class="select">
+                        <div class="arrow"></div>
+                        <select  id="sel-day">
+                            <option value="All" >All</option>
+                            <option value="Alex" >Alex</option>
+                            <option value="Ann" >Ann</option>
+                            <option value="Bob" >Bob</option>
+                            <option value="Summer" >Summer</option>    
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="header_btns">
-                <button id="btn-add" type="button">Add new event+</button>
-                <select id="sel-user">
-                    <option selected value="all">All members</option>
-                    <option value="Чебурашка">Alex</option>
-                    <option value="Крокодил Гена">Bob</option>
-                    <option value="Шапокляк">Ann</option>
-                    <option value="Крыса Лариса">Summer</option>
-                   </select>
-            </div>
+            
         </div>
         <div class="content">
+            
             <div class="table"></div>
         </div>
+        <footer>
+            <div>
+                <span>Ciklum test task. Developer: Andrew Olefir</span>
+            </div>
+        </footer>
     </div>
+    
 </body>
 </html>

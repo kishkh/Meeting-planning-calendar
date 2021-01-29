@@ -5,10 +5,10 @@ function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, 
             
             if(!expanded) {
                 checkboxes.classList.remove('hide');
-                checkboxes.classList.add('show');
+                checkboxes.classList.add('showBlock');
                 expanded = true;
             } else {
-                checkboxes.classList.remove('show');
+                checkboxes.classList.remove('showBlock');
                 checkboxes.classList.add('hide');
                 expanded = false;
             }
@@ -17,7 +17,7 @@ function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, 
             e.target.classList.contains("che-usr") === false && 
             e.target.classList.contains("lab-che") === false) {
                 
-                checkboxes.classList.remove('show');
+                checkboxes.classList.remove('showBlock');
                 checkboxes.classList.add('hide');
                 expanded = false;   
                 

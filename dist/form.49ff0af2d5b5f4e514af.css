@@ -73,6 +73,21 @@ h1, h2, h3, h4, h5, h6 {
   /* Non-prefixed version, currently
                                     not supported by any browser */ }
 
+.show {
+  display: flex; }
+
+.showBlock {
+  display: block; }
+
+.showOpacity {
+  opacity: 1; }
+
+.hideOpacity {
+  opacity: 0; }
+
+.hide {
+  display: none; }
+
 body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 20px;
@@ -139,12 +154,11 @@ body {
     cursor: default; }
 
 .inp {
-  height: 40px;
-  width: 205px;
+  height: 35px;
+  width: 200px;
   margin: 0 0 0 100px;
-  border-radius: 5px;
   color: #FF7F50;
-  border: 3px solid #323538;
+  border-radius: 3px;
   font-size: 18px;
   background-color: #1D2225; }
 
@@ -192,7 +206,7 @@ body {
     font-weight: bold; }
 
 .selectPlace {
-  width: 205px;
+  width: 200px;
   padding: 8px 0 0 0; }
 
 .che-usr {
@@ -208,7 +222,9 @@ body {
 
 #checkboxes {
   width: 100%;
-  margin-top: 5px; }
+  margin-top: 5px;
+  position: relative;
+  z-index: 2; }
   #checkboxes label {
     display: flex;
     width: 100%;
@@ -219,23 +235,34 @@ body {
       background-color: #FF7F50;
       color: #1D2225; }
 
-option {
-  background-color: #1D2225;
-  border: none;
-  width: 100%;
-  margin: 2px; }
+.select {
+  position: relative;
+  margin-left: 100px; }
+  .select select {
+    display: block;
+    padding: 0 5px;
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    font-size: 18px;
+    color: #FF7F50;
+    background-color: #1D2225;
+    border-radius: 3px;
+    width: 200px;
+    height: 35px; }
 
-.show {
-  display: block; }
+.arrow {
+  width: 0;
+  left: 185px;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: #ff7f50 transparent transparent transparent;
+  position: absolute;
+  top: 40%;
+  pointer-events: none;
+  z-index: 0; }
 
-.showOpacity {
-  opacity: 1; }
 
-.hideOpacity {
-  opacity: 0; }
-
-.hide {
-  display: none; }
-
-
-/*# sourceMappingURL=form.2323212fde237c5de4ea.css.map*/
+/*# sourceMappingURL=form.49ff0af2d5b5f4e514af.css.map*/

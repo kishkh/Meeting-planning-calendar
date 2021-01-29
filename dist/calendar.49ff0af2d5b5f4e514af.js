@@ -2,6 +2,63 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/calendar-modal-confirm.js":
+/*!***********************************************!*\
+  !*** ./src/scripts/calendar-modal-confirm.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "modal": function() { return /* binding */ modal; },
+/* harmony export */   "openModal": function() { return /* binding */ openModal; }
+/* harmony export */ });
+function openModal(modalBackSelector) {
+  var modalPanel = document.querySelector(modalBackSelector);
+  modalPanel.classList.add('show');
+  modalPanel.classList.remove('hide');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalBackSelector) {
+  var modalPanel = document.querySelector(modalBackSelector);
+  modalPanel.classList.remove('show');
+  modalPanel.classList.add('hide');
+  document.body.style.overflow = '';
+}
+
+function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSelector, parent) {
+  var btnNo = document.querySelector(btnNoSelector);
+  var btnYes = document.querySelector(btnYesSelector);
+
+  var remove = function remove() {
+    btnYes.removeEventListener('click', replyYes);
+    btnNo.removeEventListener('click', replyNo);
+  };
+
+  var replyYes = function replyYes() {
+    parent.classList.remove('show', 'full');
+    parent.classList.add('hide');
+    var id = parent.getAttribute('id');
+    document.getElementById("".concat(id, "span")).innerHTML = '';
+    localStorage.removeItem(id);
+    closeModal(modalBackSelector);
+    remove();
+  };
+
+  var replyNo = function replyNo() {
+    closeModal(modalBackSelector);
+    remove();
+  };
+
+  btnYes.addEventListener('click', replyYes);
+  btnNo.addEventListener('click', replyNo);
+}
+
+
+
+/***/ }),
+
 /***/ "./src/scripts/calendar.js":
 /*!*********************************!*\
   !*** ./src/scripts/calendar.js ***!
@@ -10,17 +67,48 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-calendar */ "./src/scripts/create-calendar.js");
-/* harmony import */ var _styles_calendar_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/calendar.scss */ "./src/styles/calendar.scss");
+/* harmony import */ var _calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar-modal-confirm */ "./src/scripts/calendar-modal-confirm.js");
+/* harmony import */ var _styles_calendar_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/calendar.scss */ "./src/styles/calendar.scss");
 
+
+ //Create calendar
 
 var table = document.querySelector('.table');
 var arrDay = ['Time', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 var arrTime = ['Time', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
-(0,_create_calendar__WEBPACK_IMPORTED_MODULE_0__.default)(arrDay, arrTime, table);
+(0,_create_calendar__WEBPACK_IMPORTED_MODULE_0__.default)(arrDay, arrTime, table); // Add events to calendar
+
+var crosses = document.querySelectorAll('.cross');
+var keys = Object.keys(localStorage);
+keys.forEach(function (item) {
+  var meetingField = document.getElementById("".concat(item));
+  var meetingData = localStorage.getItem(item);
+  var objData = JSON.parse(meetingData);
+  var idName = objData.idName,
+      cheUsr = objData.cheUsr,
+      inpEve = objData.inpEve,
+      selDay = objData.selDay,
+      selTim = objData.selTim;
+  var newSpan = document.getElementById("".concat(idName, "span"));
+  newSpan.innerHTML = "".concat(inpEve.length > 25 ? inpEve.slice(0, 25) + '...' : inpEve);
+  meetingField.classList.remove('hide');
+  meetingField.classList.add('show', 'full');
+});
+crosses.forEach(function (item) {
+  if (item.parentNode.classList.contains('full') === true) {
+    item.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('cross') === true) {
+        (0,_calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__.openModal)('.modal_bg');
+        var parent = e.target.parentNode;
+        (0,_calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__.modal)('.modal_bg', '.btn_yes', '.btn_no', '.modal_container', parent);
+      }
+    });
+  }
+}); //Filter
+
 var btnAdd = document.querySelector('#btn-add');
 btnAdd.addEventListener('click', function () {
   window.location.href = "./form.html";
-  console.log('add');
 });
 
 /***/ }),
@@ -44,14 +132,14 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
 
       if (row === 0) {
         newCont.setAttribute('id', "".concat(arrTimeName[row]));
-        newCont.classList.add('headline', 'container', 'full');
+        newCont.classList.add('headline', 'container');
         var newSpan = document.createElement('span');
         newSpan.classList.add('span-head');
         newSpan.textContent = "".concat(arrDayName[cont]);
         newCont.appendChild(newSpan);
       } else if (cont === 0) {
         newCont.setAttribute('id', "".concat(arrTimeName[row].toLowerCase()));
-        newCont.classList.add('headline', 'container', 'full');
+        newCont.classList.add('headline', 'container');
 
         var _newSpan = document.createElement('span');
 
@@ -60,8 +148,22 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
         _newSpan.textContent = "".concat(arrTimeName[row]);
         newCont.appendChild(_newSpan);
       } else {
-        newCont.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row]));
-        newCont.classList.add('container', 'empty');
+        // newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
+        newCont.classList.add('container');
+        var newDiv = document.createElement('div');
+        newDiv.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row]));
+        newDiv.classList.add('meetField', 'hide');
+
+        var _newSpan2 = document.createElement('span');
+
+        _newSpan2.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row], "span"));
+
+        var newCross = document.createElement('span');
+        newCross.classList.add('cross');
+        newCross.innerHTML = '&#10006';
+        newDiv.appendChild(_newSpan2);
+        newDiv.appendChild(newCross);
+        newCont.appendChild(newDiv);
       }
 
       newRow.appendChild(newCont);
@@ -119,6 +221,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = function() {}
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
@@ -233,4 +347,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=calendar.2323212fde237c5de4ea.js.map
+//# sourceMappingURL=calendar.49ff0af2d5b5f4e514af.js.map

@@ -13,7 +13,7 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
             
             if (row === 0) {
                 newCont.setAttribute('id', `${arrTimeName[row]}`);
-                newCont.classList.add('headline', 'container', 'full');
+                newCont.classList.add('headline', 'container');
             
                 let newSpan = document.createElement('span');
                 newSpan.classList.add('span-head');
@@ -22,7 +22,7 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
             
             } else if (cont === 0) {
                 newCont.setAttribute('id', `${arrTimeName[row].toLowerCase()}`);
-                newCont.classList.add('headline', 'container', 'full');
+                newCont.classList.add('headline', 'container');
             
                 let newSpan = document.createElement('span');
                 newSpan.classList.add('span-head');
@@ -30,8 +30,24 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
                 newCont.appendChild(newSpan);
             
             } else {
-                newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
-                newCont.classList.add('container', 'empty')
+                // newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
+                newCont.classList.add('container')
+                const newDiv = document.createElement('div');
+                newDiv.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`)
+                newDiv.classList.add('meetField', 'hide');
+                
+                const newSpan = document.createElement('span');
+                newSpan.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}span`);
+                
+                
+                const newCross = document.createElement('span');
+                newCross.classList.add('cross');
+                newCross.innerHTML ='&#10006'
+                
+                
+                newDiv.appendChild(newSpan);
+                newDiv.appendChild(newCross);
+                newCont.appendChild(newDiv);
             }
             newRow.appendChild(newCont);
         }

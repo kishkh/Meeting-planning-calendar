@@ -1,51 +1,136 @@
 @import 'null.scss';
 @import 'colors.scss';
 @import 'unselectable.scss';
+@import 'show-hide.scss';
 
 
 body{
-    
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 30px;
     background-color: $lightGray;
-    margin: 0 auto;
+    margin: 0 auto;    
 }
+
 .header{
     display: flex;
     align-items:flex-end;
-    justify-content: space-around;
-    height: 50px;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: 700;
+    height: 90px;
     background-color: $darkGray;
-    color: $agua;
+    color: rgb(230,230,50);
+}
+.head_wrapper{
+    display: flex;
+    align-items:flex-end;
+    padding: 0 30px;
+    justify-content: space-between;
+    width: 900px;
 }
 .header_btns{
     display: flex;
+    
     align-items:center;
     justify-content: space-around;
 
+}
+.cross{
+    cursor: pointer;
 }
 .content{
-    
-    padding: 20px 0 0;
-    min-height: 500px;
+    padding: 30px 0 ;
+    height: 700px;
     display: flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content: space-around;
     background-color:$darkGray;
-    color: $lime;
+    color: $coral;
 
 }
+
+.modal_bg{
+    position: absolute;
+    width: 100%;
+    min-height: 900px;
+    justify-content: center;
+    align-items:flex-start;
+    background-color: rgba(30,30,30,.1);
+}
+.modal_container{
+    
+    width: 400px;
+    margin-top: 300px;
+    border: 3px solid $darkGray;
+    border-radius: 3px;
+    height: 200px;
+    z-index: 3;
+    background-color: $gray;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+.btn_no{
+    background-color: $darkGray;
+    color: $crimson;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px 0 0 0;
+    position: relative;
+    left: 2px;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: -1px -1px 6px $darkGray;
+       
+    &:active{
+        box-shadow: none;        
+    }   
+}
+.btn_yes{
+    background-color: $darkGray;
+    color: $poleGreen;
+    height: 40px;
+    position: relative;
+    right: 2px;
+    border-radius: 0 5px 0 0;
+    width: 150px;
+    font-weight: 700;
+    font-size: 20px;
+    box-shadow: 1px -1px 6px $darkGray;
+       
+    &:active{
+        box-shadow: none;        
+    } 
+}
+.modal_text{
+    display: flex;
+    position: relative;
+    right: 1px;
+    justify-content: space-around;
+    align-items:center;
+    background-color: $darkGray;
+    margin: 30px 0 66px;
+    width: 396px;
+    padding: 10px 0;
+    color: $coral;
+    text-align: center;
+    font-size: 20px;
+}
+
 .table{
     margin: 0 10%;
 }
 .row{
-
+    
     justify-content: center;
     display: flex;
 }
 .headline{
     font-weight: 700;
-    // background-color: $lightGray !important;
 }
 .container{
     width: 150px;
@@ -70,4 +155,79 @@ body{
     align-items: center;
     background-color:$darkGray;
     border-radius: 3px;
+}
+footer{ 
+
+	height: 50px;
+
+    
+    color: yellow;
+    background-color:$lightGray;
+    font-size: 13px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+#btn-add{
+    height: 35px;
+    margin: 0 0 0 20px;
+    width: 120px;
+    border-style: outset;
+    border-radius: 3px;
+    background-color: $gray;
+    box-shadow: 0 2px 8px 1px rgb(20, 20, 20);
+    color: $poleGreen;
+    font-size: 15px;     
+    &:active{
+        box-shadow: inset 0px 0px 2px rgb(20, 20, 20);
+        background-color: $gray;  
+    }
+}
+.meetField{
+    background-color: $poleGreen;
+    font-weight: 600;
+    font-size: 15px;
+    color: $darkGray;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px 1px rgb(20, 20, 20);
+    width: 140px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px;
+}
+.select{
+    position: relative;
+    margin: 0 30px 0 40px;
+    
+    select{
+        display: block;
+        padding: 0 9px ;
+        border: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        font-family: inherit;
+        font-size: 18px;
+        color: $coral;
+        box-shadow: 0 2px 8px 1px rgb(20, 20, 20);
+        background-color: $gray;
+        border-radius: 3px;
+        width: 120px;
+        height: 35px;
+    }
+}
+.arrow{
+    width: 0;
+    left: 103px;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: #ff7f50 transparent transparent transparent;
+    position: absolute;
+    top: 40%;
+    pointer-events: none;
+    z-index: 0;
 }

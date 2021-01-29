@@ -14,15 +14,15 @@ function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, 
     if (e.target === checkboxContainer || e.target === textTeam) {
       if (!expanded) {
         checkboxes.classList.remove('hide');
-        checkboxes.classList.add('show');
+        checkboxes.classList.add('showBlock');
         expanded = true;
       } else {
-        checkboxes.classList.remove('show');
+        checkboxes.classList.remove('showBlock');
         checkboxes.classList.add('hide');
         expanded = false;
       }
     } else if (e.target && e.target.classList.contains("che-usr") === false && e.target.classList.contains("lab-che") === false) {
-      checkboxes.classList.remove('show');
+      checkboxes.classList.remove('showBlock');
       checkboxes.classList.add('hide');
       expanded = false;
     } else if (e.target && e.target.classList.contains("che-usr") === true || e.target.classList.contains("lab-che") === true) {
@@ -98,15 +98,15 @@ function readData(json) {
   var data = JSON.parse(json);
   var keys = Object.keys(localStorage);
 
-  if (data['inp-eve'] === '') {
+  if (data.inpEve === '') {
     throw new ValidationError("Field 'Name of the event' is empty!");
   }
 
-  if (data['che-usr'].length === 0) {
+  if (data.cheUsr.length === 0) {
     throw new ValidationError("Field 'Participants' is empty!");
   }
 
-  if (keys.indexOf(data['id-name']) !== -1) {
+  if (keys.indexOf(data.idName) !== -1) {
     throw new ValidationError("Time slot is already booked!");
   } else {
     return true;
@@ -141,14 +141,14 @@ var submit = document.querySelector('#submit'); // checkboxes
 var checkboxes = document.getElementById("checkboxes");
 var checkboxContainer = document.querySelector('.selectPlace');
 var expanded = false;
-var users = [];
 var textTeam = document.getElementById('text-team');
+var users = [];
 (0,_form_checkbox_selector__WEBPACK_IMPORTED_MODULE_1__.default)(users, expanded, checkboxContainer, checkboxes, textTeam, teamNames);
 var textErr = document.getElementById('err-text');
 var placeErr = document.querySelector('.err-place');
 var closeErr = document.querySelector('.err-close');
 
-function timerF() {
+function hideElement() {
   placeErr.classList.remove('showOpacity');
   placeErr.classList.add('hideOpacity');
   textErr.innerHTML = '';
@@ -170,11 +170,11 @@ form.addEventListener('click', function (e) {
   if (e.target && e.target === submit) {
     e.preventDefault();
     var dataJson = JSON.stringify({
-      'id-name': "".concat(day.value).concat(time.value),
-      'inp-eve': nameEvent.value,
-      'che-usr': [].concat(users),
-      'sel-day': day.value,
-      'sel-tim': time.value
+      'idName': "".concat(day.value).concat(time.value),
+      'inpEve': nameEvent.value,
+      'cheUsr': [].concat(users),
+      'selDay': day.value,
+      'selTim': time.value
     });
 
     try {
@@ -183,7 +183,7 @@ form.addEventListener('click', function (e) {
       placeErr.classList.remove('hideOpacity');
       placeErr.classList.add('showOpacity');
       textErr.innerHTML = "".concat(err.name, "   ").concat(err.message);
-      timer = setTimeout(timerF, 5000);
+      timer = setTimeout(hideElement, 5000);
     }
 
     if ((0,_form_erorr__WEBPACK_IMPORTED_MODULE_0__.readData)(dataJson)) {
@@ -366,4 +366,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=form.2323212fde237c5de4ea.js.map
+//# sourceMappingURL=form.49ff0af2d5b5f4e514af.js.map
