@@ -70,32 +70,87 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
 
 /***/ }),
 
-/***/ "./src/scripts/calendar-modal-confirm.js":
+/***/ "./src/scripts/calendar-filter.js":
+/*!****************************************!*\
+  !*** ./src/scripts/calendar-filter.js ***!
+  \****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+//Filter
+function filterByName(unitsSelector, selectNameSelector) {
+  var selector = document.querySelector(selectNameSelector);
+  selector.addEventListener('change', function () {
+    var meetingFields = document.querySelectorAll(unitsSelector);
+    console.log(meetingFields.length);
+    meetingFields.forEach(function (item) {
+      if (selector.value === 'All') {
+        item.classList.remove('hide', 'show');
+        item.classList.add('show');
+        return true;
+      }
+
+      item.classList.remove('show', 'hide');
+      item.classList.add('hide');
+
+      if (item.classList.contains(selector.value)) {
+        item.classList.remove('hide');
+        item.classList.add('show');
+      }
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (filterByName);
+
+/***/ }),
+
+/***/ "./src/scripts/calendar-modal-windows.js":
 /*!***********************************************!*\
-  !*** ./src/scripts/calendar-modal-confirm.js ***!
+  !*** ./src/scripts/calendar-modal-windows.js ***!
   \***********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "modal": function() { return /* binding */ modal; },
-/* harmony export */   "openModal": function() { return /* binding */ openModal; }
+/* harmony export */   "modalConfirm": function() { return /* binding */ modalConfirm; },
+/* harmony export */   "openModal": function() { return /* binding */ openModal; },
+/* harmony export */   "modalInfo": function() { return /* binding */ modalInfo; }
 /* harmony export */ });
+var wrapper = document.querySelector('.wrapper');
+
 function openModal(modalBackSelector) {
   var modalPanel = document.querySelector(modalBackSelector);
   modalPanel.classList.add('show');
   modalPanel.classList.remove('hide');
-  document.body.style.overflow = 'hidden';
+  wrapper.style.overflow = 'hidden';
+  wrapper.style.pointerEvents = ' none';
 }
 
 function closeModal(modalBackSelector) {
   var modalPanel = document.querySelector(modalBackSelector);
   modalPanel.classList.remove('show');
   modalPanel.classList.add('hide');
-  document.body.style.overflow = '';
+  wrapper.style.overflow = '';
+  wrapper.style.pointerEvents = '';
 }
 
-function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSelector, parent) {
+function modalInfo(modalBackSelector, btnYesSelector) {
+  var btnYes = document.querySelector(btnYesSelector);
+
+  var remove = function remove() {
+    btnYes.removeEventListener('click', replyYes);
+  };
+
+  var replyYes = function replyYes(e) {
+    closeModal(modalBackSelector);
+    remove();
+  };
+
+  btnYes.addEventListener('click', replyYes);
+}
+
+function modalConfirm(modalBackSelector, btnYesSelector, btnNoSelector, parent) {
   var btnNo = document.querySelector(btnNoSelector);
   var btnYes = document.querySelector(btnYesSelector);
 
@@ -105,8 +160,7 @@ function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSele
   };
 
   var replyYes = function replyYes() {
-    parent.classList.remove('show', 'full');
-    parent.classList.add('hide');
+    parent.className = 'meetField hide';
     var id = parent.getAttribute('id');
     document.getElementById("".concat(id, "span")).innerHTML = '';
     localStorage.removeItem(id);
@@ -135,8 +189,10 @@ function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSele
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _calendar_create_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar-create-table */ "./src/scripts/calendar-create-table.js");
-/* harmony import */ var _calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar-modal-confirm */ "./src/scripts/calendar-modal-confirm.js");
-/* harmony import */ var _styles_calendar_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/calendar.scss */ "./src/styles/calendar.scss");
+/* harmony import */ var _calendar_modal_windows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar-modal-windows */ "./src/scripts/calendar-modal-windows.js");
+/* harmony import */ var _calendar_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar-filter */ "./src/scripts/calendar-filter.js");
+/* harmony import */ var _styles_calendar_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/calendar.scss */ "./src/styles/calendar.scss");
+
 
 
  //Create calendar
@@ -147,6 +203,7 @@ var arrTime = ['Time', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16
 (0,_calendar_create_table__WEBPACK_IMPORTED_MODULE_0__.default)(arrDay, arrTime, table); // Add events to calendar
 
 var crosses = document.querySelectorAll('.cross');
+var information = document.querySelectorAll('.info');
 var keys = Object.keys(localStorage);
 keys.forEach(function (item) {
   var meetingField = document.getElementById("".concat(item));
@@ -159,21 +216,43 @@ keys.forEach(function (item) {
       selTim = objData.selTim;
   var newSpan = document.getElementById("".concat(idName, "span"));
   newSpan.innerHTML = "".concat(inpEve.length > 25 ? inpEve.slice(0, 25) + '...' : inpEve);
+  var newInfoSpan = document.createElement('span');
+  newInfoSpan.setAttribute('id', "".concat(idName, "info"));
+  newInfoSpan.classList.add('hide');
+  newInfoSpan.innerHTML = "Name of event: ".concat(inpEve, "\n\nParticipants: ").concat(cheUsr.join(' '), "\n\nDay: ").concat(selDay.toUpperCase(), "\n\nTime: ").concat(selTim);
+  meetingField.appendChild(newInfoSpan);
   meetingField.classList.remove('hide');
   meetingField.classList.add('show', 'full');
+  cheUsr.forEach(function (usrName) {
+    return meetingField.classList.add(usrName);
+  });
 });
 crosses.forEach(function (item) {
   if (item.parentNode.classList.contains('full') === true) {
     item.addEventListener('click', function (e) {
       if (e.target && e.target.classList.contains('cross') === true) {
-        (0,_calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__.openModal)('.modal_bg');
+        (0,_calendar_modal_windows__WEBPACK_IMPORTED_MODULE_1__.openModal)('.modal_bg');
         var parent = e.target.parentNode;
-        (0,_calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__.modal)('.modal_bg', '.btn_yes', '.btn_no', '.modal_container', parent);
+        (0,_calendar_modal_windows__WEBPACK_IMPORTED_MODULE_1__.modalConfirm)('.modal_bg', '.btn_yes', '.btn_no', parent);
       }
     });
   }
-}); //Filter
-
+});
+var textInfo = document.querySelector('.modal_text_info');
+information.forEach(function (item) {
+  if (item.parentNode.classList.contains('full') === true) {
+    item.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('info') === true) {
+        var id = e.target.parentNode.getAttribute('id');
+        var infoSpan = document.getElementById("".concat(id, "info"));
+        textInfo.innerHTML = "".concat(infoSpan.textContent);
+        (0,_calendar_modal_windows__WEBPACK_IMPORTED_MODULE_1__.openModal)('.modal_bg_info');
+        (0,_calendar_modal_windows__WEBPACK_IMPORTED_MODULE_1__.modalInfo)('.modal_bg_info', '.btn_yes_info', '.modal_container_info');
+      }
+    });
+  }
+});
+(0,_calendar_filter__WEBPACK_IMPORTED_MODULE_2__.default)('.full', '#filterName');
 var btnAdd = document.querySelector('#btn-add');
 btnAdd.addEventListener('click', function () {
   window.location.href = "./form.html";
@@ -351,4 +430,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=calendar.774643655f878703a340.js.map
+//# sourceMappingURL=calendar.2b35ef26805bc581340d.js.map

@@ -1,5 +1,6 @@
 import createTable from './calendar-create-table';
-import {modal, openModal} from './calendar-modal-confirm';
+import {modalConfirm, openModal, modalInfo} from './calendar-modal-windows';
+import filterByName from './calendar-filter';
 import '../styles/calendar.scss';
 
 //Create calendar
@@ -10,18 +11,26 @@ createTable(arrDay, arrTime, table);
 
 // Add events to calendar
 const crosses = document.querySelectorAll('.cross');
+const information = document.querySelectorAll('.info');
 let keys = Object.keys(localStorage);
 keys.forEach(item => {
     const meetingField = document.getElementById(`${item}`);
     const meetingData = localStorage.getItem(item);
     const objData = JSON.parse(meetingData);
     const {idName, cheUsr, inpEve, selDay, selTim} = objData;
-    
-    const newSpan = document.getElementById(`${idName}span`);
 
+    const newSpan = document.getElementById(`${idName}span`);
     newSpan.innerHTML = `${inpEve.length > 25 ? (inpEve.slice(0, 25)+'...') : inpEve}`;
+
+    const newInfoSpan = document.createElement('span');
+    newInfoSpan.setAttribute('id', `${idName}info`);
+    newInfoSpan.classList.add('hide');
+    newInfoSpan.innerHTML = `Name of event: ${inpEve}\n\nParticipants: ${cheUsr.join(' ')}\n\nDay: ${selDay.toUpperCase()}\n\nTime: ${selTim}`;
+   
+    meetingField.appendChild(newInfoSpan);
     meetingField.classList.remove('hide');
     meetingField.classList.add('show', 'full');
+    cheUsr.forEach(usrName => meetingField.classList.add(usrName));
 
 });
 crosses.forEach(item => {
@@ -30,14 +39,30 @@ crosses.forEach(item => {
             if(e.target && e.target.classList.contains('cross') === true) {
                 openModal('.modal_bg');
                 const parent = e.target.parentNode;
-                modal('.modal_bg', '.btn_yes', '.btn_no', '.modal_container', parent);   
+                modalConfirm('.modal_bg', '.btn_yes', '.btn_no', parent);   
             }
         });
     }
 });
 
-//Filter
+const textInfo = document.querySelector('.modal_text_info');
+information.forEach(item => {
+    if (item.parentNode.classList.contains('full') === true) {
+        item.addEventListener('click', e => {
+            if(e.target && e.target.classList.contains('info') === true) {
+                
+                const id = e.target.parentNode.getAttribute('id');
+                const infoSpan = document.getElementById(`${id}info`);
+                textInfo.innerHTML = `${infoSpan.textContent}`;
+                openModal('.modal_bg_info');
+                modalInfo('.modal_bg_info', '.btn_yes_info', '.modal_container_info');   
+            }
+        });
+    }
+});
 
+
+filterByName('.full', '#filterName')
 
 
 const btnAdd = document.querySelector('#btn-add');

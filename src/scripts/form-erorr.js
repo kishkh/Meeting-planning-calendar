@@ -13,6 +13,9 @@ function readData(json) {
     if(data.inpEve === '') {
         throw new ValidationError("Field 'Name of the event' is empty!");
     }
+    if(data.inpEve.length > 100) {
+        throw new ValidationError("'Name of the event' is too long!");
+    }
     if(data.cheUsr.length === 0) {
 
         throw new ValidationError("Field 'Participants' is empty!");

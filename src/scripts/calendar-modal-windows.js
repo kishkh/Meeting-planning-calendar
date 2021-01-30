@@ -1,27 +1,40 @@
-
+const wrapper = document.querySelector('.wrapper');
 function openModal(modalBackSelector) {
     const modalPanel = document.querySelector(modalBackSelector);
     modalPanel.classList.add('show');
     modalPanel.classList.remove('hide');
-    document.body.style.overflow = 'hidden';
+    wrapper.style.overflow = 'hidden';
+    wrapper.style.pointerEvents =' none';
 }
 function closeModal(modalBackSelector) {
     const modalPanel = document.querySelector(modalBackSelector);
     modalPanel.classList.remove('show');
     modalPanel.classList.add('hide');
-    document.body.style.overflow = '';
+    wrapper.style.overflow = '';
+    wrapper.style.pointerEvents ='';
 }
-function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSelector, parent) {
+function modalInfo(modalBackSelector, btnYesSelector) {
+    const btnYes = document.querySelector(btnYesSelector);
+    const remove = () => {
+        btnYes.removeEventListener('click', replyYes);    
+    }
+    const replyYes = (e) => {
+        closeModal(modalBackSelector);
+        remove();
+    }
+    btnYes.addEventListener('click', replyYes);
+
+}   
+function modalConfirm(modalBackSelector, btnYesSelector, btnNoSelector, parent) {
     const btnNo = document.querySelector(btnNoSelector);
     const btnYes = document.querySelector(btnYesSelector);
     
     const remove = () => {
-        btnYes.removeEventListener('click', replyYes)
+        btnYes.removeEventListener('click', replyYes);
         btnNo.removeEventListener('click', replyNo);
     }
     const replyYes = () => {
-        parent.classList.remove('show', 'full');
-        parent.classList.add('hide');
+        parent.className = 'meetField hide';
         const id = parent.getAttribute('id');        
         document.getElementById(`${id}span`).innerHTML='';
         localStorage.removeItem(id);
@@ -33,8 +46,8 @@ function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSele
         remove();
     }
     
-    btnYes.addEventListener('click', replyYes)
+    btnYes.addEventListener('click', replyYes);
     btnNo.addEventListener('click', replyNo);   
 }
 
-export {modal, openModal};
+export {modalConfirm, openModal, modalInfo};

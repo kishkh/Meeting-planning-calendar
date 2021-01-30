@@ -102,6 +102,10 @@ function readData(json) {
     throw new ValidationError("Field 'Name of the event' is empty!");
   }
 
+  if (data.inpEve.length > 100) {
+    throw new ValidationError("'Name of the event' is too long!");
+  }
+
   if (data.cheUsr.length === 0) {
     throw new ValidationError("Field 'Participants' is empty!");
   }
@@ -366,4 +370,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=form.774643655f878703a340.js.map
+//# sourceMappingURL=form.2b35ef26805bc581340d.js.map
