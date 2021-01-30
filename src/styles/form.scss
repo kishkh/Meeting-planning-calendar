@@ -24,6 +24,7 @@ body{
 .err-place{
     cursor: default;
     display: flex;
+    transition: opacity 0.5s linear;
     padding: 0 10px;
     justify-content:space-between;
     align-items: center;
@@ -154,6 +155,7 @@ body{
 }
 #checkboxes {
     width: 100%;
+    transition:  background-color 0.2s linear;
     margin-top: 5px;
     position: relative;
     z-index: 2;

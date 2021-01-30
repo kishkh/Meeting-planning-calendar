@@ -108,6 +108,7 @@ body {
 .err-place {
   cursor: default;
   display: flex;
+  transition: opacity 0.5s linear;
   padding: 0 10px;
   justify-content: space-between;
   align-items: center;
@@ -222,6 +223,7 @@ body {
 
 #checkboxes {
   width: 100%;
+  transition: background-color 0.2s linear;
   margin-top: 5px;
   position: relative;
   z-index: 2; }
@@ -265,4 +267,4 @@ body {
   z-index: 0; }
 
 
-/*# sourceMappingURL=form.49ff0af2d5b5f4e514af.css.map*/
+/*# sourceMappingURL=form.774643655f878703a340.css.map*/

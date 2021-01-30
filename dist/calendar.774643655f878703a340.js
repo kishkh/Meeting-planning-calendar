@@ -2,6 +2,74 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/calendar-create-table.js":
+/*!**********************************************!*\
+  !*** ./src/scripts/calendar-create-table.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// Use cycle in cycle for create new table
+function createTable(arrDayName, arrTimeName, parentSelector) {
+  for (var row = 0; row < arrTimeName.length; row++) {
+    var newRow = document.createElement('div');
+    newRow.setAttribute('id', "row-".concat(arrTimeName[row]));
+    newRow.classList.add('row');
+
+    for (var cont = 0; cont < arrDayName.length; cont++) {
+      var newCont = document.createElement('div');
+
+      if (row === 0) {
+        newCont.setAttribute('id', "".concat(arrTimeName[row]));
+        newCont.classList.add('headline', 'container');
+        var newSpan = document.createElement('span');
+        newSpan.classList.add('span-head');
+        newSpan.textContent = "".concat(arrDayName[cont]);
+        newCont.appendChild(newSpan);
+      } else if (cont === 0) {
+        newCont.setAttribute('id', "".concat(arrTimeName[row].toLowerCase()));
+        newCont.classList.add('headline', 'container');
+
+        var _newSpan = document.createElement('span');
+
+        _newSpan.classList.add('span-head');
+
+        _newSpan.textContent = "".concat(arrTimeName[row]);
+        newCont.appendChild(_newSpan);
+      } else {
+        // newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
+        newCont.classList.add('container');
+        var newDiv = document.createElement('div');
+        newDiv.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row]));
+        newDiv.classList.add('meetField', 'hide');
+
+        var _newSpan2 = document.createElement('span');
+
+        _newSpan2.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row], "span"));
+
+        var newInfo = document.createElement('span');
+        newInfo.classList.add('info');
+        newInfo.innerHTML = '&#128712';
+        var newCross = document.createElement('span');
+        newCross.classList.add('cross');
+        newCross.innerHTML = '&#10006';
+        newDiv.appendChild(_newSpan2);
+        newDiv.appendChild(newInfo);
+        newDiv.appendChild(newCross);
+        newCont.appendChild(newDiv);
+      }
+
+      newRow.appendChild(newCont);
+    }
+
+    parentSelector.appendChild(newRow);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (createTable);
+
+/***/ }),
+
 /***/ "./src/scripts/calendar-modal-confirm.js":
 /*!***********************************************!*\
   !*** ./src/scripts/calendar-modal-confirm.js ***!
@@ -66,7 +134,7 @@ function modal(modalBackSelector, btnYesSelector, btnNoSelector, modalWindowSele
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _create_calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-calendar */ "./src/scripts/create-calendar.js");
+/* harmony import */ var _calendar_create_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar-create-table */ "./src/scripts/calendar-create-table.js");
 /* harmony import */ var _calendar_modal_confirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar-modal-confirm */ "./src/scripts/calendar-modal-confirm.js");
 /* harmony import */ var _styles_calendar_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/calendar.scss */ "./src/styles/calendar.scss");
 
@@ -76,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
 var table = document.querySelector('.table');
 var arrDay = ['Time', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 var arrTime = ['Time', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
-(0,_create_calendar__WEBPACK_IMPORTED_MODULE_0__.default)(arrDay, arrTime, table); // Add events to calendar
+(0,_calendar_create_table__WEBPACK_IMPORTED_MODULE_0__.default)(arrDay, arrTime, table); // Add events to calendar
 
 var crosses = document.querySelectorAll('.cross');
 var keys = Object.keys(localStorage);
@@ -110,70 +178,6 @@ var btnAdd = document.querySelector('#btn-add');
 btnAdd.addEventListener('click', function () {
   window.location.href = "./form.html";
 });
-
-/***/ }),
-
-/***/ "./src/scripts/create-calendar.js":
-/*!****************************************!*\
-  !*** ./src/scripts/create-calendar.js ***!
-  \****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// Use cycle in cycle for create new table
-function createTable(arrDayName, arrTimeName, parentSelector) {
-  for (var row = 0; row < arrTimeName.length; row++) {
-    var newRow = document.createElement('div');
-    newRow.setAttribute('id', "row-".concat(arrTimeName[row]));
-    newRow.classList.add('row');
-
-    for (var cont = 0; cont < arrDayName.length; cont++) {
-      var newCont = document.createElement('div');
-
-      if (row === 0) {
-        newCont.setAttribute('id', "".concat(arrTimeName[row]));
-        newCont.classList.add('headline', 'container');
-        var newSpan = document.createElement('span');
-        newSpan.classList.add('span-head');
-        newSpan.textContent = "".concat(arrDayName[cont]);
-        newCont.appendChild(newSpan);
-      } else if (cont === 0) {
-        newCont.setAttribute('id', "".concat(arrTimeName[row].toLowerCase()));
-        newCont.classList.add('headline', 'container');
-
-        var _newSpan = document.createElement('span');
-
-        _newSpan.classList.add('span-head');
-
-        _newSpan.textContent = "".concat(arrTimeName[row]);
-        newCont.appendChild(_newSpan);
-      } else {
-        // newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
-        newCont.classList.add('container');
-        var newDiv = document.createElement('div');
-        newDiv.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row]));
-        newDiv.classList.add('meetField', 'hide');
-
-        var _newSpan2 = document.createElement('span');
-
-        _newSpan2.setAttribute('id', "".concat(arrDayName[cont].toLowerCase()).concat(arrTimeName[row], "span"));
-
-        var newCross = document.createElement('span');
-        newCross.classList.add('cross');
-        newCross.innerHTML = '&#10006';
-        newDiv.appendChild(_newSpan2);
-        newDiv.appendChild(newCross);
-        newCont.appendChild(newDiv);
-      }
-
-      newRow.appendChild(newCont);
-    }
-
-    parentSelector.appendChild(newRow);
-  }
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (createTable);
 
 /***/ }),
 
@@ -347,4 +351,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=calendar.49ff0af2d5b5f4e514af.js.map
+//# sourceMappingURL=calendar.774643655f878703a340.js.map

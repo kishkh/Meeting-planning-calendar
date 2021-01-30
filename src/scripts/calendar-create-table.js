@@ -39,13 +39,16 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
                 const newSpan = document.createElement('span');
                 newSpan.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}span`);
                 
-                
+                const newInfo = document.createElement('span');
+                newInfo.classList.add('info');
+                newInfo.innerHTML = '&#128712';
                 const newCross = document.createElement('span');
                 newCross.classList.add('cross');
                 newCross.innerHTML ='&#10006'
                 
                 
                 newDiv.appendChild(newSpan);
+                newDiv.appendChild(newInfo);
                 newDiv.appendChild(newCross);
                 newCont.appendChild(newDiv);
             }

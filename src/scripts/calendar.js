@@ -1,4 +1,4 @@
-import createTable from './create-calendar';
+import createTable from './calendar-create-table';
 import {modal, openModal} from './calendar-modal-confirm';
 import '../styles/calendar.scss';
 
