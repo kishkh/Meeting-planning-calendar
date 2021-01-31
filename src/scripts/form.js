@@ -2,6 +2,7 @@ import {readData} from './form-erorr';
 import selectCheckbox from './form-checkbox-selector';
 import '../styles/form.scss';
 
+//interface selectors
 const form = document.querySelector('#form');
 
 const nameEvent = document.querySelector('#inp-eve');
@@ -20,9 +21,9 @@ let expanded = false;
 const textTeam = document.getElementById('text-team');
 const users = [];
 
-
 selectCheckbox(users, expanded, checkboxContainer, checkboxes, textTeam, teamNames);
 
+// custom errors selectors
 const textErr = document.getElementById('err-text');
 const placeErr = document.querySelector('.err-place');
 const closeErr = document.querySelector('.err-close');
@@ -33,6 +34,7 @@ function hideElement() {
 }
 let timer ;
 
+//Get data from form. Check and throw errors if something wrong. Send data to localStorage
 form.addEventListener('click',(e) => {
     if(e.target && e.target === back) {
         window.location.href = "./calendar.html";
@@ -70,4 +72,4 @@ form.addEventListener('click',(e) => {
             window.location.href = "./calendar.html"
         } 
     }
-});
+}); 

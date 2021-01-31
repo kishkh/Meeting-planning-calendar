@@ -1,4 +1,4 @@
-
+// select-checkboxes functional
 function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, teamNames) {
     window.addEventListener('click', e =>{
         if(e.target === checkboxContainer|| e.target === textTeam){
@@ -21,9 +21,7 @@ function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, 
                 checkboxes.classList.add('hide');
                 expanded = false;   
                 
-                
-                
-        } else if(e.target && 
+       } else if(e.target && 
             e.target.classList.contains("che-usr") === true || 
             e.target.classList.contains("lab-che") === true) {
                 

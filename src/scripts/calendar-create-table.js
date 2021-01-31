@@ -30,8 +30,7 @@ function createTable(arrDayName, arrTimeName, parentSelector) {
                 newCont.appendChild(newSpan);
             
             } else {
-                // newCont.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`);
-                newCont.classList.add('container')
+                newCont.classList.add('container', 'empty');
                 const newDiv = document.createElement('div');
                 newDiv.setAttribute('id', `${arrDayName[cont].toLowerCase()}${arrTimeName[row]}`)
                 newDiv.classList.add('meetField', 'hide');

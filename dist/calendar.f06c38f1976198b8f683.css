@@ -88,6 +88,9 @@ h1, h2, h3, h4, h5, h6 {
 .hide {
   display: none; }
 
+.hovered {
+  background-color: #343d43 !important; }
+
 body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 30px;
@@ -269,6 +272,7 @@ body {
   border-radius: 3px;
   height: 50px;
   margin: 2px;
+  transition: background-color 0.2s;
   display: flex;
   overflow: hidden;
   justify-content: center;
@@ -365,4 +369,4 @@ footer {
   z-index: 0; }
 
 
-/*# sourceMappingURL=calendar.2b35ef26805bc581340d.css.map*/
+/*# sourceMappingURL=calendar.f06c38f1976198b8f683.css.map*/

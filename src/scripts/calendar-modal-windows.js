@@ -35,8 +35,10 @@ function modalConfirm(modalBackSelector, btnYesSelector, btnNoSelector, parent) 
     }
     const replyYes = () => {
         parent.className = 'meetField hide';
+        parent.parentNode.classList.add('empty');
         const id = parent.getAttribute('id');        
         document.getElementById(`${id}span`).innerHTML='';
+        document.getElementById(`${id}info`).remove();
         localStorage.removeItem(id);
         closeModal(modalBackSelector);
         remove();

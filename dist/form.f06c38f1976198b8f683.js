@@ -9,6 +9,7 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+// select-checkboxes functional
 function selectCheckbox(arr, expanded, checkboxContainer, checkboxes, textTeam, teamNames) {
   window.addEventListener('click', function (e) {
     if (e.target === checkboxContainer || e.target === textTeam) {
@@ -133,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_form_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/form.scss */ "./src/styles/form.scss");
 
 
+ //interface selectors
 
 var form = document.querySelector('#form');
 var nameEvent = document.querySelector('#inp-eve');
@@ -147,7 +149,8 @@ var checkboxContainer = document.querySelector('.selectPlace');
 var expanded = false;
 var textTeam = document.getElementById('text-team');
 var users = [];
-(0,_form_checkbox_selector__WEBPACK_IMPORTED_MODULE_1__.default)(users, expanded, checkboxContainer, checkboxes, textTeam, teamNames);
+(0,_form_checkbox_selector__WEBPACK_IMPORTED_MODULE_1__.default)(users, expanded, checkboxContainer, checkboxes, textTeam, teamNames); // custom errors selectors
+
 var textErr = document.getElementById('err-text');
 var placeErr = document.querySelector('.err-place');
 var closeErr = document.querySelector('.err-close');
@@ -158,7 +161,8 @@ function hideElement() {
   textErr.innerHTML = '';
 }
 
-var timer;
+var timer; //Get data from form. Check and throw errors if something wrong. Send data to localStorage
+
 form.addEventListener('click', function (e) {
   if (e.target && e.target === back) {
     window.location.href = "./calendar.html";
@@ -370,4 +374,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=form.2b35ef26805bc581340d.js.map
+//# sourceMappingURL=form.f06c38f1976198b8f683.js.map
