@@ -1,4 +1,4 @@
-// get data from localStorage and
+// Get data from localStorage. Create and fill meeting container
 function showDataFromLocalStorage() {
     let keys = Object.keys(localStorage);
     keys.forEach(item => {

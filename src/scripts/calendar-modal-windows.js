@@ -1,3 +1,4 @@
+// Show modal windows
 const wrapper = document.querySelector('.wrapper');
 function openModal(modalBackSelector) {
     const modalPanel = document.querySelector(modalBackSelector);
@@ -13,6 +14,7 @@ function closeModal(modalBackSelector) {
     wrapper.style.overflow = '';
     wrapper.style.pointerEvents ='';
 }
+// Modal window with information about event
 function modalInfo(modalBackSelector, btnYesSelector) {
     const btnYes = document.querySelector(btnYesSelector);
     const remove = () => {
@@ -24,7 +26,8 @@ function modalInfo(modalBackSelector, btnYesSelector) {
     }
     btnYes.addEventListener('click', replyYes);
 
-}   
+}  
+// Modal window with question about delete event
 function modalConfirm(modalBackSelector, btnYesSelector, btnNoSelector, parent) {
     const btnNo = document.querySelector(btnNoSelector);
     const btnYes = document.querySelector(btnYesSelector);

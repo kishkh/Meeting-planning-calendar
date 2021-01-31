@@ -1,6 +1,6 @@
 import createTable from './calendar-create-table';
 import showDataFromLocalStorage from './calendar-get-data-from-local-storage';
-import {modalConfirm, openModal, modalInfo} from './calendar-modal-windows';
+import {eventCrosses, eventInfo} from './calendar-cross-and-info-event';
 import filterByName from './calendar-filter';
 import '../styles/calendar.scss';
 
@@ -11,37 +11,15 @@ const arrTime = ['Time', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '
 createTable(arrDay, arrTime, table);
 
 // Add events to calendar
-
 showDataFromLocalStorage();
 
-const crosses = document.querySelectorAll('.cross');
-const information = document.querySelectorAll('.info');
-crosses.forEach(item => {
-    item.addEventListener('click', e => {
-        if(e.target && e.target.classList.contains('cross') === true) {
-            openModal('.modal_bg');
-            const parent = e.target.parentNode;
-            modalConfirm('.modal_bg', '.btn_yes', '.btn_no', parent);   
-        }
-    });
-});
-
-const textInfo = document.querySelector('.modal_text_info');
-information.forEach(item => {
-    item.addEventListener('click', e => {
-        if(e.target && e.target.classList.contains('info') === true) {
-            
-            const id = e.target.parentNode.getAttribute('id');
-            const infoSpan = document.getElementById(`${id}info`);
-            textInfo.innerHTML = `${infoSpan.textContent}`;
-            openModal('.modal_bg_info');
-            modalInfo('.modal_bg_info', '.btn_yes_info', '.modal_container_info');   
-        }
-    });
-});
+// Add events to buttons from event container
+eventCrosses('.cross');
+eventInfo('.info', '.modal_text_info');
 
 // filter
-filterByName('.full', '#filterName')
+filterByName('.full', '#filterName');
+
 // drag and drop
 const dragAndDrop = () => {
     
@@ -127,11 +105,12 @@ const dragAndDrop = () => {
         
         
     }
-    
-    addEvent();
-    
+    addEvent();  
 };
+
 dragAndDrop();
+
+// Add event to button 'new event'
 const btnAdd = document.querySelector('#btn-add');
 btnAdd.addEventListener('click', () => {
     window.location.href = "./form.html";

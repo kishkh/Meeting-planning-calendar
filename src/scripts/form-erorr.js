@@ -10,8 +10,11 @@ function readData(json) {
     let data = JSON.parse(json);
     let keys = Object.keys(localStorage);
     
-    if(data.inpEve === '') {
+    if(data.inpEve.replace(/\s+/g, ' ') === '') {
         throw new ValidationError("Field 'Name of the event' is empty!");
+    }
+    if(data.inpEve.replace(/\s+/g, ' ').length < 3) {
+        throw new ValidationError("'Name of the event' is too short!");
     }
     if(data.inpEve.length > 100) {
         throw new ValidationError("'Name of the event' is too long!");

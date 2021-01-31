@@ -50,7 +50,7 @@ form.addEventListener('click',(e) => {
         
         let dataJson = JSON.stringify({
             'idName': `${day.value}${time.value}`,
-            'inpEve': nameEvent.value,
+            'inpEve': nameEvent.value.replace(/\s+/g, ' '),
             'cheUsr': [...users],
             'selDay': day.value,
             'selTim': time.value
